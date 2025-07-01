@@ -19,7 +19,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Garante que padding e border não aumentem a largura total do elemento */
+    box-sizing: border-box; /* Garante que padding e border não aumentem o largura total do elemento */
 }
 
 body {
@@ -120,7 +120,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     max-width: 700px; /* Largura máxima para o parágrafo */
     margin-bottom: 30px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra preta mais forte para visibilidade */
-    max-width: 90%; /* Garante que o texto não ultrapasse a largura em telas menores */
+    max-width: 90%; /* Garante que o texto não ultrapasse o largura em telas menores */
     line-height: 1.4;
 }
 
@@ -160,7 +160,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.4); /* Fundo preto mais transparente (40% de opacidade) */
+    background-color: rgba(0,0,0,0.4); /* NOVO: Fundo preto mais transparente (40% de opacidade) */
     color: var(--secondary-color); /* Cor do ícone: Branco */
     width: 50px; /* Largura para formar o círculo */
     height: 50px; /* Altura para formar o círculo */
@@ -175,7 +175,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .carousel-nav-arrow:hover {
-    background-color: rgba(0,0,0,0.6); /* Fundo preto um pouco menos transparente no hover (60% de opacidade) */
+    background-color: rgba(0,0,0,0.6); /* NOVO: Fundo preto um pouco menos transparente no hover (60% de opacidade) */
     box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Sombra sutil no hover */
 }
 .carousel-nav-arrow.prev { left: 20px; }
@@ -350,7 +350,7 @@ footer {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.65); /* Fundo escurecido e semi-transparente (mais escuro) */
     z-index: 1000; /* Garante que fique acima de tudo, inclusive do botão flutuante */
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    justify-content: center;
     align-items: center; /* Centraliza o conteúdo verticalmente */
     opacity: 0; /* Começa totalmente transparente */
     visibility: hidden; /* Garante que não interfira com eventos de mouse/toque quando escondido */
