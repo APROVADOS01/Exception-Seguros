@@ -51,7 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openWhatsappPopupBtn && whatsappPopup && closeWhatsappPopupBtn) {
         // FUNÇÃO PARA ABRIR O POP-UP
         const showPopup = () => {
-            whatsappPopup.style.display = 'flex'; // Torna o overlay visível
+            whatsappPopup.style.display = 'flex'; // Torna o overlay visível (usando flex para centralizar)
+            // Adiciona a classe 'active' após uma pequena pausa para permitir a transição CSS
             setTimeout(() => {
                 whatsappPopup.classList.add('active');
             }, 10);
