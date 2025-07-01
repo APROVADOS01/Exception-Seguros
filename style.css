@@ -1,56 +1,654 @@
-/* ... (seu CSS anterior) ... */
+/* ========================================= */
+/* VARIÁVEIS CSS: Cores Globais do Tema      */
+/* Use estas variáveis para padronizar suas cores e facilitar mudanças futuras. */
+/* ========================================= */
+:root {
+    --primary-color: #000000; /* Preto: Usado para texto principal, fundos escuros */
+    --secondary-color: #FFFFFF; /* Branco: Usado para fundos claros, texto em fundos escuros */
+    --accent-color: #FF0000; /* Vermelho: Usado para acentos, títulos, bordas, destaques */
+    --light-gray: #f2f2f2; /* Cinza claro: Para elementos secundários, bordas sutis */
+    --medium-gray: #ccc; /* Cinza médio: Para bordas, separadores */
+    --dark-gray-text: #333; /* Cinza escuro para textos específicos se necessário */
+    --whatsapp-green: #25d366; /* Verde do WhatsApp */
+    --whatsapp-green-hover: #1ebe57; /* Verde do WhatsApp no hover */
+}
+
+/* ========================================= */
+/* ESTILOS GLOBAIS E RESET                   */
+/* ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e border não aumentem a largura total do elemento */
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif; /* Fonte padrão do sistema, leve e moderna */
+    background: var(--secondary-color); /* Fundo do corpo: Branco */
+    color: var(--primary-color); /* Cor do texto principal: Preto */
+    line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
+    overflow-x: hidden; /* Evita rolagem horizontal em excesso */
+}
+
+.container {
+    max-width: 1000px; /* Largura máxima para o conteúdo principal */
+    margin: 40px auto; /* Centraliza o container e adiciona margem superior/inferior */
+    padding: 20px; /* Espaçamento interno */
+    background: var(--secondary-color); /* Fundo do container: Branco */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Sombra suave para profundidade */
+}
+
+/* ESTILOS DE FOCO PARA ACESSIBILIDADE: Para usuários que navegam com teclado. */
+input:focus,
+select:focus,
+button:focus,
+a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
+    outline: 2px solid var(--accent-color); /* Foco na cor vermelha do tema */
+    outline-offset: 3px; /* Afasta o outline da borda do elemento */
+}
+
+/* ========================================= */
+/* CABEÇALHO DO SITE: Contém o logotipo      */
+/* ========================================= */
+.site-header {
+    text-align: center; /* Centraliza o logo */
+    padding: 25px 0; /* Espaçamento superior e inferior */
+    background-color: var(--secondary-color); /* Fundo branco para o cabeçalho */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* Sombra sutil abaixo do cabeçalho */
+}
+
+.site-header img {
+    max-width: 250px; /* LARGURA MÁXIMA DO LOGO. Ajuste conforme o tamanho do seu logotipo. */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Garante que o max-width e margin auto funcionem */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+}
+
 
 /* ========================================= */
 /* CARROSSEL PRINCIPAL (SEÇÃO HERO)          */
 /* ========================================= */
 .carousel-container {
-   position: relative;
-   width: 100%;
-   height: 480px; /* # ALTURA DO CARROSSEL EM TELAS MAIORES. Ajuste conforme necessário. */
-   overflow: hidden; /* Esconde conteúdo que ultrapassa a altura/largura */
+    position: relative;
+    width: 100%;
+    height: 480px; /* ALTURA DO CARROSSEL EM TELAS MAIORES. Ajuste conforme necessário. */
+    overflow: hidden; /* Esconde conteúdo que ultrapassa a altura/largura */
 }
 
 .carousel-slide {
-   display: none; /* Esconde todos os slides por padrão (o JS controlará o 'active') */
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-size: cover; /* Faz a imagem cobrir toda a área, cortando se necessário */
-   background-position: center; /* Centraliza a imagem de fundo */
-   color: var(--secondary-color); /* Cor do texto no slide: Branco (para contraste com imagens escuras) */
-   text-align: center;
-   display: flex; /* Para centralizar o conteúdo (título, parágrafo, botão) */
-   flex-direction: column;
-   justify-content: center; /* Centraliza verticalmente */
-   align-items: center; /* Centraliza horizontalmente */
-   opacity: 0; /* Começa invisível para o efeito de transição */
-   transition: opacity 1s ease-in-out; /* Transição suave para o efeito de fade */
-   padding: 20px; /* Espaçamento interno para o conteúdo do slide */
+    display: none; /* Esconde todos os slides por padrão (o JS controlará o 'active') */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Faz a imagem cobrir toda a área, cortando se necessário */
+    background-position: center; /* Centraliza a imagem de fundo */
+    color: var(--secondary-color); /* Cor do texto no slide: Branco (para contraste com imagens escuras) */
+    text-align: center;
+    display: flex; /* Para centralizar o conteúdo (título, parágrafo, botão) */
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    opacity: 0; /* Começa invisível para o efeito de transição */
+    transition: opacity 1s ease-in-out; /* Transição suave para o efeito de fade */
+    padding: 20px; /* Espaçamento interno para o conteúdo do slide */
 }
 
 .carousel-slide.active {
-   display: flex; /* Mostra o slide ativo */
-   opacity: 1; /* Torna o slide visível */
+    display: flex; /* Mostra o slide ativo */
+    opacity: 1; /* Torna o slide visível */
 }
 
 .carousel-slide h1 {
-   font-size: 44px; /* # TAMANHO DA FONTE DO TÍTULO DO CARROSSEL. */
-   margin-bottom: 15px;
-   /* ADICIONANDO SOMBRA AO TEXTO */
-   text-shadow: 2px 2px 4px rgba(0,0,0,0.6); /* Sombra preta suave */
-   max-width: 90%; /* Garante que o texto não ultrapasse a largura em telas menores */
-   line-height: 1.2;
+    font-size: 44px; /* TAMANHO DA FONTE DO TÍTULO DO CARROSSEL. */
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.8); /* Sombra preta mais forte para visibilidade */
+    max-width: 90%; /* Garante que o texto não ultrapasse a largura em telas menores */
+    line-height: 1.2;
 }
 
 .carousel-slide p {
-   font-size: 24px; /* # TAMANHO DA FONTE DO PARÁGRAFO DO CARROSSEL. */
-   max-width: 700px; /* Largura máxima para o parágrafo */
-   margin-bottom: 30px;
-   text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* Sombra preta suave */
-   max-width: 90%; /* Garante que o texto não ultrapasse a largura em telas menores */
-   line-height: 1.4;
+    font-size: 24px; /* TAMANHO DA FONTE DO PARÁGRAFO DO CARROSSEL. */
+    max-width: 700px; /* Largura máxima para o parágrafo */
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra preta mais forte para visibilidade */
+    max-width: 90%; /* Garante que o texto não ultrapasse a largura em telas menores */
+    line-height: 1.4;
 }
 
-/* ... (seu CSS restante) ... */
+/* ========================================= */
+/* ESTILOS DOS BOTÕES DO CARROSSEL           */
+/* ========================================= */
+.carousel-button {
+    padding: 15px 35px; /* Ajuste para um botão um pouco maior */
+    font-size: 19px; /* TAMANHO DA FONTE DO BOTÃO DO CARROSSEL. */
+    font-weight: bold;
+    border-radius: 50px; /* ARREDONDAMENTO DO BOTÃO: Valor alto para formato pílula. */
+    cursor: pointer;
+    text-decoration: none; /* Remove sublinhado do link */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave para todas as propriedades */
+    display: inline-block; /* Garante que padding e margin funcionem corretamente */
+
+    /* ESTILO INICIAL DO BOTÃO: Preto com texto branco e BORDA FINA VERMELHA. */
+    background-color: var(--primary-color); /* Preto */
+    color: var(--secondary-color); /* Branco */
+    border: 2px solid var(--accent-color); /* Borda Vermelha */
+}
+
+.carousel-button:hover,
+.carousel-button:active {
+    /* ESTILO DO BOTÃO AO PASSAR O MOUSE OU CLICAR: Fundo PRETO e texto BRANCO, com efeito sutil. */
+    background-color: var(--primary-color); /* Permanece Preto */
+    color: var(--secondary-color); /* Permanece Branco */
+    border-color: var(--accent-color); /* A borda continua Vermelha */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Sombra que "brilha" em vermelho */
+    transform: translateY(-3px); /* Leve levantamento */
+}
+
+/* ========================================= */
+/* SETAS DE NAVEGAÇÃO DO CARROSSEL (ATUALIZADO: REDONDO E MAIS TRANSPARENTE) */
+/* ========================================= */
+.carousel-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.4); /* NOVO: Fundo preto mais transparente (40% de opacidade) */
+    color: var(--secondary-color); /* Cor do ícone: Branco */
+    width: 50px; /* Largura para formar o círculo */
+    height: 50px; /* Altura para formar o círculo */
+    display: flex; /* Para centralizar o ícone */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10; /* Garante que as setas fiquem acima dos slides */
+    font-size: 28px; /* TAMANHO DA FONTE DAS SETAS. */
+    border-radius: 50%; /* NOVO: Formato redondo */
+    user-select: none; /* Evita seleção de texto ao clicar */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.carousel-nav-arrow:hover {
+    background-color: rgba(0,0,0,0.6); /* NOVO: Fundo preto um pouco menos transparente no hover (60% de opacidade) */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Sombra sutil no hover */
+}
+.carousel-nav-arrow.prev { left: 20px; }
+.carousel-nav-arrow.next { right: 20px; }
+
+/* ========================================= */
+/* SEÇÃO DE TEXTO INTRODUTÓRIO               */
+/* ========================================= */
+.intro-text {
+    text-align: center; /* Centraliza o texto */
+    margin-top: 50px; /* Espaçamento superior maior */
+    margin-bottom: 50px; /* Espaçamento inferior maior */
+}
+
+.intro-text h2 {
+    font-size: 32px; /* TAMANHO DO TÍTULO DA SEÇÃO INTRODUTÓRIA. */
+    color: var(--primary-color); /* COR DO TÍTULO: PRETO */
+    margin-bottom: 25px;
+}
+
+.intro-text p {
+    font-size: 20px; /* TAMANHO DA FONTE DOS PARÁGRAFOS DA SEÇÃO INTRODUTÓRIA. */
+    max-width: 850px; /* Limita a largura do texto para melhor legibilidade */
+    margin: 0 auto 18px auto; /* Centraliza os parágrafos e adiciona espaçamento inferior */
+    line-height: 1.7; /* Espaçamento entre linhas para melhor leitura */
+    color: var(--primary-color); /* COR DO TEXTO: PRETO */
+}
+
+.intro-text p:last-child {
+    margin-bottom: 0; /* Remove a margem inferior do último parágrafo */
+}
+
+/* ========================================= */
+/* SEÇÃO DE BENEFÍCIOS                       */
+/* ========================================= */
+.benefits h2, .form-section h2 {
+    font-size: 28px; /* TAMANHO DOS TÍTULOS DAS SEÇÕES (Benefícios e Formulário). */
+    color: var(--primary-color); /* COR DOS TÍTULOS: PRETO */
+    margin-bottom: 25px;
+    text-align: center;
+}
+.benefits ul {
+    list-style: none; /* Remove o estilo padrão da lista */
+    padding: 0;
+}
+.benefits li {
+    padding: 12px 0;
+    font-size: 19px; /* TAMANHO DA FONTE DOS ITENS DA LISTA DE BENEFÍCIOS. */
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--light-gray); /* Linha sutil entre os itens */
+    color: var(--primary-color); /* COR DO TEXTO: PRETO */
+}
+.benefits li:last-child {
+    border-bottom: none; /* Remove a linha do último item */
+}
+.benefits li::before {
+    content: "✅"; /* ÍCONE DO CHECKLIST. Pode ser substituído por outros emojis ou ícones (ex: "\2705"). */
+    margin-right: 12px;
+    color: var(--accent-color); /* Cor do ícone do checklist: Vermelho */
+    font-size: 22px; /* TAMANHO DO ÍCONE DO CHECKLIST. */
+}
+
+/* ========================================= */
+/* ESTILOS DO FORMULÁRIO DE COTAÇÃO          */
+/* ========================================= */
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Espaçamento entre os campos do formulário */
+    margin-top: 25px;
+}
+/* Estilo para labels visivelmente escondidas mas acessíveis para leitores de tela */
+.form-section label.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+.form-section input,
+.form-section select {
+    padding: 15px;
+    font-size: 17px; /* TAMANHO DA FONTE DOS CAMPOS DE TEXTO E SELECT. */
+    border-radius: 8px;
+    border: 1px solid var(--medium-gray); /* Borda cinza clara para os campos */
+    width: 100%; /* Garante que os campos ocupem toda a largura disponível */
+    color: var(--primary-color);
+}
+.form-section input::placeholder {
+    color: #888;
+}
+
+.form-section button[type="submit"] {
+    background-color: var(--primary-color); /* COR DE FUNDO DO BOTÃO: PRETO */
+    color: var(--secondary-color); /* COR DO TEXTO DO BOTÃO: BRANCO */
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Transição para efeitos de hover */
+    font-weight: bold;
+    width: 100%;
+}
+.form-section button[type="submit"]:hover {
+    background-color: var(--primary-color); /* PERMANECE PRETO no hover */
+    color: var(--secondary-color); /* PERMANECE BRANCO no hover */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Sombra que "brilha" em vermelho no hover */
+    transform: translateY(-3px); /* Leve levantamento no hover */
+}
+
+/* ========================================= */
+/* RODAPÉ (FOOTER)                           */
+/* ========================================= */
+footer {
+    background-color: var(--primary-color); /* Fundo do rodapé: Preto */
+    padding: 25px;
+    text-align: center;
+    font-size: 15px; /* TAMANHO DA FONTE DO RODAPÉ. */
+    color: var(--secondary-color); /* Cor do texto do rodapé: Branco */
+    margin-top: 50px; /* Espaçamento superior do rodapé */
+}
+
+/* ========================================= */
+/* BOTÃO FLUTUANTE DO WHATSAPP (Gatilho do Pop-up) */
+/* ========================================= */
+.whatsapp-float {
+    position: fixed; /* Fixa o botão na tela */
+    bottom: 25px; /* DISTÂNCIA DA PARTE INFERIOR DA TELA. */
+    right: 25px; /* DISTÂNCIA DA DIREITA DA TELA. */
+    background-color: var(--whatsapp-green); /* Verde do WhatsApp */
+    color: var(--secondary-color); /* Branco */
+    font-size: 15px; /* TAMANHO DA FONTE DO TEXTO "Consultor Online". */
+    padding: 12px 18px; /* Espaçamento interno */
+    border-radius: 50px; /* Torna o botão arredondado */
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra para o botão */
+    z-index: 998; /* Fica abaixo do pop-up, mas acima do conteúdo normal */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre o ícone e o texto */
+    border: none; /* Remove a borda padrão de botões */
+    cursor: pointer; /* Indica que é clicável */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.whatsapp-float:hover {
+    background-color: var(--whatsapp-green-hover); /* Verde mais escuro no hover */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transform: translateY(-2px);
+}
+.whatsapp-float img {
+    width: 35px; /* TAMANHO DO ÍCONE DO WHATSAPP. */
+    height: 35px;
+    vertical-align: middle; /* Alinha a imagem com o texto */
+}
+
+/* ========================================= */
+/* ESTILOS DO POP-UP INTERATIVO DO WHATSAPP  */
+/* ========================================= */
+.whatsapp-popup-overlay {
+    display: none; /* Esconde o pop-up por padrão (JS vai mudar para 'flex') */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65); /* Fundo escurecido e semi-transparente (mais escuro) */
+    z-index: 1000; /* Garante que fique acima de tudo, inclusive do botão flutuante */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    opacity: 0; /* Começa totalmente transparente */
+    visibility: hidden; /* Garante que não interfira com eventos de mouse/toque quando escondido */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transição suave de visibilidade */
+}
+
+.whatsapp-popup-overlay.active {
+    display: flex; /* Torna o overlay visível */
+    opacity: 1; /* Torna opaco */
+    visibility: visible; /* Torna clicável */
+}
+
+.whatsapp-popup-content {
+    background-color: var(--secondary-color); /* Fundo do pop-up: Branco */
+    padding: 35px; /* Mais padding interno */
+    border-radius: 12px; /* Bordas mais arredondadas */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35); /* Sombra mais pronunciada */
+    text-align: center;
+    position: relative;
+    max-width: 380px; /* Largura máxima do pop-up */
+    width: 90%; /* Responsivo: 90% da largura da tela */
+    transform: translateY(20px); /* Efeito de entrada: começa um pouco abaixo */
+    opacity: 0; /* Efeito de entrada: começa invisível */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* Transição suave para o pop-up */
+}
+
+.whatsapp-popup-overlay.active .whatsapp-popup-content {
+    transform: translateY(0); /* Sobe para a posição final */
+    opacity: 1; /* Torna visível */
+}
+
+.whatsapp-popup-close {
+    position: absolute;
+    top: 15px; /* Posição do 'X' */
+    right: 20px;
+    font-size: 30px; /* Tamanho maior para o 'X' */
+    cursor: pointer;
+    color: var(--medium-gray); /* Cor do 'X' */
+}
+.whatsapp-popup-close:hover {
+    color: var(--primary-color); /* Cor do 'X' no hover: Preto */
+}
+
+.consultant-info {
+    margin-bottom: 25px; /* Mais espaço abaixo do bloco do consultor */
+}
+
+.consultant-photo {
+    width: 90px; /* TAMANHO DA IMAGEM DO CONSULTOR. */
+    height: 90px;
+    border-radius: 50%; /* Torna a imagem circular */
+    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
+    border: 4px solid var(--accent-color); /* Borda vermelha na imagem do consultor */
+    margin: 0 auto 12px auto; /* Centraliza a imagem e adiciona margem inferior */
+    display: block;
+}
+
+.consultant-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary-color); /* COR DO NOME DO CONSULTOR: PRETO */
+}
+
+.whatsapp-popup-message {
+    font-size: 18px;
+    color: var(--primary-color); /* COR DA MENSAGEM: PRETO */
+    margin-bottom: 30px;
+}
+
+.whatsapp-popup-button {
+    display: inline-block;
+    background-color: var(--primary-color); /* COR DE FUNDO DO BOTÃO NO POP-UP: PRETO */
+    color: var(--secondary-color); /* BRANCO */
+    padding: 14px 30px;
+    border-radius: 50px; /* Botão arredondado */
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.whatsapp-popup-button:hover {
+    background-color: var(--primary-color); /* PERMANECE PRETO no hover */
+    color: var(--secondary-color); /* PERMANECE BRANCO no hover */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Sombra que "brilha" em vermelho no hover */
+    transform: translateY(-3px); /* Leve levantamento no hover */
+}
+
+
+/* ========================================= */
+/* MEDIA QUERIES PARA RESPONSIVIDADE         */
+/* ========================================= */
+
+/* Para telas de TABLETS e CELULARES GRANDES (até 768px de largura) */
+@media (max-width: 768px) {
+    .site-header {
+        padding: 15px 0;
+    }
+    .site-header img {
+        max-width: 200px; /* Logo menor em tablets */
+    }
+
+    .carousel-container {
+        height: 380px; /* Altura do carrossel em tablets */
+    }
+
+    .carousel-slide h1 {
+        font-size: 36px; /* Título do carrossel menor */
+    }
+
+    .carousel-slide p {
+        font-size: 19px; /* Parágrafo do carrossel menor */
+    }
+
+    .carousel-button {
+        padding: 12px 30px;
+        font-size: 17px;
+    }
+
+    .carousel-nav-arrow {
+        width: 45px; /* Ajuste para o círculo menor */
+        height: 45px;
+        font-size: 22px;
+        left: 15px;
+        right: 15px;
+    }
+
+    .container {
+        margin: 30px auto;
+        padding: 18px;
+    }
+
+    .intro-text {
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+    .intro-text h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    .intro-text p {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .benefits h2, .form-section h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .benefits li {
+        font-size: 17px;
+        padding: 10px 0;
+    }
+    .benefits li::before {
+        font-size: 20px;
+    }
+
+    .form-section form {
+        gap: 15px;
+        margin-top: 20px;
+    }
+    .form-section input,
+    .form-section select,
+    .form-section button {
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    footer {
+        padding: 20px;
+        font-size: 13px;
+        margin-top: 30px;
+    }
+
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+    .whatsapp-float img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .whatsapp-popup-content {
+        padding: 30px;
+    }
+    .consultant-photo {
+        width: 80px;
+        height: 80px;
+    }
+    .consultant-name {
+        font-size: 18px;
+    }
+    .whatsapp-popup-message {
+        font-size: 16px;
+    }
+    .whatsapp-popup-button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}
+
+/* Para telas de CELULARES PEQUENOS (até 480px de largura) */
+@media (max-width: 480px) {
+    .site-header {
+        padding: 10px 0;
+    }
+    .site-header img {
+        max-width: 150px; /* Logo menor em celulares */
+    }
+
+    .carousel-container {
+        height: 300px; /* Altura do carrossel em celulares */
+    }
+
+    .carousel-slide h1 {
+        font-size: 28px;
+    }
+    .carousel-slide p {
+        font-size: 15px;
+    }
+    .carousel-button {
+        font-size: 15px;
+        padding: 10px 25px;
+    }
+    .carousel-nav-arrow {
+        display: none; /* Esconde as setas em telas muito pequenas para economizar espaço. O autoplay ainda funcionará. */
+    }
+
+    .container {
+        margin: 25px auto;
+        padding: 15px;
+    }
+
+    .intro-text {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .intro-text h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    .intro-text p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .benefits h2, .form-section h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .benefits li {
+        font-size: 15px;
+        padding: 8px 0;
+    }
+    .benefits li::before {
+        font-size: 18px;
+    }
+
+    .form-section form {
+        gap: 12px;
+        margin-top: 15px;
+    }
+    .form-section input,
+    .form-section select,
+    .form-section button {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    footer {
+        padding: 15px;
+        font-size: 12px;
+        margin-top: 25px;
+    }
+
+    .whatsapp-float {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    .whatsapp-float img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .whatsapp-popup-content {
+        padding: 25px;
+    }
+    .consultant-photo {
+        width: 60px;
+        height: 60px;
+    }
+    .consultant-name {
+        font-size: 16px;
+    }
+    .whatsapp-popup-message {
+        font-size: 14px;
+    }
+    .whatsapp-popup-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
