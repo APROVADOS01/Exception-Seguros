@@ -30,6 +30,13 @@ body {
     overflow-x: hidden; /* Evita rolagem horizontal em excesso */
 }
 
+/* Garante que imagens sejam responsivas e não causem overflow */
+img {
+    display: block; /* Remove espaço extra abaixo de imagens */
+    max-width: 100%; /* Garante que a imagem não seja maior que seu contêiner */
+    height: auto; /* Mantém a proporção da imagem ao redimensionar */
+}
+
 .container {
     max-width: 1000px; /* Largura máxima para o conteúdo principal */
     margin: 40px auto; /* Centraliza o container e adiciona margem superior/inferior */
@@ -61,7 +68,6 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
 .site-header img {
     max-width: 250px; /* LARGURA MÁXIMA DO LOGO. Ajuste conforme o tamanho do seu logotipo. */
     height: auto; /* Mantém a proporção da imagem */
-    display: block; /* Garante que o max-width e margin auto funcionem */
     margin: 0 auto; /* Centraliza a imagem horizontalmente */
 }
 
@@ -154,7 +160,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.4); /* NOVO: Fundo preto mais transparente (40% de opacidade) */
+    background-color: rgba(0,0,0,0.4); /* Fundo preto mais transparente (40% de opacidade) */
     color: var(--secondary-color); /* Cor do ícone: Branco */
     width: 50px; /* Largura para formar o círculo */
     height: 50px; /* Altura para formar o círculo */
@@ -164,12 +170,12 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     cursor: pointer;
     z-index: 10; /* Garante que as setas fiquem acima dos slides */
     font-size: 28px; /* TAMANHO DA FONTE DAS SETAS. */
-    border-radius: 50%; /* NOVO: Formato redondo */
+    border-radius: 50%; /* Formato redondo */
     user-select: none; /* Evita seleção de texto ao clicar */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .carousel-nav-arrow:hover {
-    background-color: rgba(0,0,0,0.6); /* NOVO: Fundo preto um pouco menos transparente no hover (60% de opacidade) */
+    background-color: rgba(0,0,0,0.6); /* Fundo preto um pouco menos transparente no hover (60% de opacidade) */
     box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Sombra sutil no hover */
 }
 .carousel-nav-arrow.prev { left: 20px; }
