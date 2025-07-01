@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Event listener para abrir o pop-up AO CLICAR NO BOTÃO FLUTUANTE
         openWhatsappPopupBtn.addEventListener('click', showPopup);
 
-        // # NOVO: ABRIR O POP-UP AUTOMATICAMENTE QUANDO O SITE CARREGAR
+        // # ABRIR O POP-UP AUTOMATICAMENTE QUANDO O SITE CARREGAR
         // Você pode ajustar o tempo (em milissegundos) ou remover o setTimeout para abrir instantaneamente.
         setTimeout(() => {
             showPopup();
