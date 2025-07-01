@@ -19,7 +19,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Garante que padding e border não aumentem o largura total do elemento */
+    box-sizing: border-box; /* Garante que padding e border não aumentem a largura total do elemento */
 }
 
 body {
@@ -28,13 +28,6 @@ body {
     color: var(--primary-color); /* Cor do texto principal: Preto */
     line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
     overflow-x: hidden; /* Evita rolagem horizontal em excesso */
-}
-
-/* Garante que imagens sejam responsivas e não causem overflow */
-img {
-    display: block; /* Remove espaço extra abaixo de imagens */
-    max-width: 100%; /* Garante que a imagem não seja maior que seu contêiner */
-    height: auto; /* Mantém a proporção da imagem ao redimensionar */
 }
 
 .container {
@@ -68,6 +61,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
 .site-header img {
     max-width: 250px; /* LARGURA MÁXIMA DO LOGO. Ajuste conforme o tamanho do seu logotipo. */
     height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Garante que o max-width e margin auto funcionem */
     margin: 0 auto; /* Centraliza a imagem horizontalmente */
 }
 
@@ -120,7 +114,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     max-width: 700px; /* Largura máxima para o parágrafo */
     margin-bottom: 30px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra preta mais forte para visibilidade */
-    max-width: 90%; /* Garante que o texto não ultrapasse o largura em telas menores */
+    max-width: 90%; /* Garante que o texto não ultrapasse a largura em telas menores */
     line-height: 1.4;
 }
 
@@ -154,29 +148,24 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
 }
 
 /* ========================================= */
-/* SETAS DE NAVEGAÇÃO DO CARROSSEL (ATUALIZADO: REDONDO E MAIS TRANSPARENTE) */
+/* SETAS DE NAVEGAÇÃO DO CARROSSEL           */
 /* ========================================= */
 .carousel-nav-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.4); /* NOVO: Fundo preto mais transparente (40% de opacidade) */
+    background-color: rgba(0,0,0,0.7); /* Fundo preto semi-transparente */
     color: var(--secondary-color); /* Cor do ícone: Branco */
-    width: 50px; /* Largura para formar o círculo */
-    height: 50px; /* Altura para formar o círculo */
-    display: flex; /* Para centralizar o ícone */
-    justify-content: center;
-    align-items: center;
+    padding: 12px 18px; /* Ajuste do padding */
     cursor: pointer;
     z-index: 10; /* Garante que as setas fiquem acima dos slides */
     font-size: 28px; /* TAMANHO DA FONTE DAS SETAS. */
-    border-radius: 50%; /* Formato redondo */
+    border-radius: 5px;
     user-select: none; /* Evita seleção de texto ao clicar */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 .carousel-nav-arrow:hover {
-    background-color: rgba(0,0,0,0.6); /* NOVO: Fundo preto um pouco menos transparente no hover (60% de opacidade) */
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Sombra sutil no hover */
+    background-color: var(--primary-color); /* Preto sólido no hover */
 }
 .carousel-nav-arrow.prev { left: 20px; }
 .carousel-nav-arrow.next { right: 20px; }
@@ -350,7 +339,7 @@ footer {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.65); /* Fundo escurecido e semi-transparente (mais escuro) */
     z-index: 1000; /* Garante que fique acima de tudo, inclusive do botão flutuante */
-    justify-content: center;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
     align-items: center; /* Centraliza o conteúdo verticalmente */
     opacity: 0; /* Começa totalmente transparente */
     visibility: hidden; /* Garante que não interfira com eventos de mouse/toque quando escondido */
@@ -469,9 +458,8 @@ footer {
     }
 
     .carousel-nav-arrow {
-        width: 45px; /* Ajuste para o círculo menor */
-        height: 45px;
-        font-size: 22px;
+        padding: 10px 15px;
+        font-size: 24px;
         left: 15px;
         right: 15px;
     }
