@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exception Seguros | Planos Empresariais</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel-slide active" style="background-image: url('cabeca01.png');">
+            <h1>Sua Família Merece o Melhor</h1>
+            <p>Conheça nossos planos de saúde individuais e familiares, feitos para cuidar de quem você ama.</p>
+            <a href="#saude-familia" class="carousel-button">Saúde para sua Família</a>
+        </div>
+        <div class="carousel-slide" style="background-image: url('cabeca02.png');">
+            <h1>Proteja o Ativo Mais Valioso da Sua Empresa</h1>
+            <p>Planos de saúde empresariais que cuidam da sua equipe e do seu negócio.</p>
+            <a href="#saude-empresa" class="carousel-button">Saúde para sua Empresa</a>
+        </div>
+        <div class="carousel-slide" style="background-image: url('cabeca03.png');">
+            <h1>Seu Veículo Seguro, Sua Mente Tranquila</h1>
+            <p>As melhores coberturas e o suporte que você precisa para o seu automóvel.</p>
+            <a href="#seguro-veiculo" class="carousel-button">Seguro para seu Veículo</a>
+        </div>
+
+        <div class="carousel-nav-arrow prev" onclick="changeSlide(-1)" role="button" aria-label="Slide anterior">&#10094;</div>
+        <div class="carousel-nav-arrow next" onclick="changeSlide(1)" role="button" aria-label="Próximo slide">&#10095;</div>
+    </div>
+    <div class="container">
+        <section class="benefits">
+            <h2>Por que escolher a Exception Seguros?</h2>
+            <ul>
+                <li>Economia real com operadoras renomadas</li>
+                <li>Redução de absenteísmo e turnover</li>
+                <li>Suporte completo e consultoria especializada</li>
+                <li>Implantação rápida e sem complicações</li>
+            </ul>
+        </section>
+
+        <section class="form-section">
+            <h2>Solicite sua Proposta Personalizada</h2>
+            <form>
+                <label for="nomeEmpresa" class="sr-only">Nome da Empresa</label>
+                <input type="text" id="nomeEmpresa" placeholder="Nome da Empresa" required />
+
+                <label for="whatsapp" class="sr-only">WhatsApp com DDD</label>
+                <input type="text" id="whatsapp" placeholder="WhatsApp com DDD" required />
+
+                <label for="faturamento" class="sr-only">Faturamento Mensal</label>
+                <select id="faturamento" required>
+                    <option value="">Faturamento Mensal</option>
+                    <option value="15-30">R$15 mil a R$30 mil</option>
+                    <option value="30-100">R$30 mil a R$100 mil</option>
+                    <option value="100+">Acima de R$100 mil</option>
+                </select>
+
+                <label for="funcionarios" class="sr-only">Número de Funcionários</label>
+                <select id="funcionarios" required>
+                    <option value="">Número de Funcionários</option>
+                    <option value="1-5">1 a 5</option>
+                    <option value="6-20">6 a 20</option>
+                    <option value="21+">21 ou mais</option>
+                </select>
+
+                <label for="tipoPlano" class="sr-only">Tipo de Plano</label>
+                <select id="tipoPlano" required>
+                    <option value="">Tipo de Plano</option>
+                    <option value="saude">Saúde</option>
+                    <option value="odonto">Odontológico</option>
+                    <option value="auto">Automóvel</option>
+                </select>
+                <button type="submit">Quero Receber Minha Proposta</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        © 2025 Exception Seguros | CNPJ 00.000.000/0000-00 | Zona Norte - São Paulo/SP
+    </footer>
+
+    <a href="https://wa.me/5511999998888" class="whatsapp-float" target="_blank" aria-label="Fale com nosso consultor via WhatsApp">
+        <img src="3.png" alt="Ícone do WhatsApp" />
+        Consultor Online
+    </a>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

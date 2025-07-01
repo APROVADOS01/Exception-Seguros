@@ -1,0 +1,322 @@
+/* ========================================= */
+/* Estilos Globais e Reset                   */
+/* ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e border não aumentem a largura total do elemento */
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif; /* Fonte padrão do sistema, leve e moderna */
+    background: #f9f9f9; /* Fundo levemente cinza */
+    color: #333; /* Cor de texto principal */
+    line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
+}
+
+.container {
+    max-width: 1000px; /* Largura máxima para o conteúdo principal */
+    margin: 40px auto; /* Centraliza o container e adiciona margem superior/inferior */
+    padding: 20px; /* Espaçamento interno */
+    background: white; /* Fundo branco para o container */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Sombra suave para profundidade */
+}
+
+/* Estilos de foco para acessibilidade (ao navegar com teclado) */
+input:focus,
+select:focus,
+button:focus,
+.carousel-button:focus,
+.whatsapp-float:focus,
+.carousel-nav-arrow:focus {
+    outline: 2px solid #0070f3; /* # Cor do outline para acessibilidade. Ajuste se quiser outra cor. */
+    outline-offset: 2px; /* Afasta o outline da borda do elemento */
+}
+
+/* ========================================= */
+/* Estilos do Carrossel                      */
+/* ========================================= */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 450px; /* # Altura padrão do carrossel em telas maiores. Ajuste conforme necessário. */
+    overflow: hidden;
+}
+
+.carousel-slide {
+    display: none; /* Esconde todos os slides por padrão */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Faz a imagem cobrir toda a área, cortando se necessário */
+    background-position: center; /* Centraliza a imagem de fundo */
+    color: white;
+    text-align: center;
+    display: flex; /* Para centralizar o conteúdo (título, parágrafo, botão) */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Transição suave para o efeito de fade */
+    padding: 20px; /* Espaçamento interno para o conteúdo do slide */
+}
+
+.carousel-slide.active {
+    display: flex; /* Mostra o slide ativo */
+    opacity: 1; /* Torna o slide visível */
+}
+
+.carousel-slide h1 {
+    font-size: 40px; /* # Tamanho da fonte do título no carrossel. Ajuste conforme preferir. */
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para o texto para melhor contraste */
+    max-width: 90%; /* Garante que o texto não ultrapasse a largura em telas menores */
+}
+
+.carousel-slide p {
+    font-size: 22px; /* # Tamanho da fonte do parágrafo no carrossel. Ajuste conforme preferir. */
+    max-width: 700px; /* Largura máxima para o parágrafo */
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    max-width: 90%; /* Garante que o texto não ultrapasse a largura em telas menores */
+}
+
+.carousel-button {
+    padding: 15px 30px;
+    font-size: 18px; /* # Tamanho da fonte do botão do carrossel. Ajuste conforme preferir. */
+    font-weight: bold;
+    border-radius: 5px; /* Bordas levemente arredondadas */
+    cursor: pointer;
+    text-decoration: none; /* Remove sublinhado do link */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transição suave */
+
+    /* # Estilo inicial do botão: preto com texto branco */
+    background-color: black;
+    color: white;
+    border: 2px solid black; /* Borda para quando estiver preto */
+}
+
+.carousel-button:hover,
+.carousel-button:active {
+    /* # Estilo do botão ao passar o mouse ou clicar: branco com texto preto */
+    background-color: white;
+    color: black;
+    border: 2px solid white; /* Borda para quando estiver branco */
+}
+
+/* Setas de navegação do carrossel */
+.carousel-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5); /* # Cor de fundo das setas (preto semi-transparente). Ajuste conforme preferir. */
+    color: white; /* # Cor do ícone das setas. Ajuste conforme preferir. */
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 24px; /* # Tamanho da fonte das setas. Ajuste conforme preferir. */
+    border-radius: 5px;
+    user-select: none; /* Evita seleção de texto */
+    transition: background-color 0.3s ease;
+}
+.carousel-nav-arrow:hover {
+    background-color: rgba(0,0,0,0.8); /* # Cor de fundo das setas ao passar o mouse. Ajuste conforme preferir. */
+}
+.carousel-nav-arrow.prev { left: 20px; } /* Posição da seta anterior */
+.carousel-nav-arrow.next { right: 20px; } /* Posição da seta próxima */
+
+/* ========================================= */
+/* Estilos da Seção de Benefícios            */
+/* ========================================= */
+.benefits h2, .form-section h2 {
+    font-size: 26px; /* # Tamanho da fonte dos títulos das seções. Ajuste conforme preferir. */
+    color: #004aad; /* # Cor dos títulos das seções (azul principal). Ajuste conforme preferir. */
+    margin-bottom: 20px;
+    text-align: center; /* Centraliza os títulos das seções */
+}
+.benefits ul {
+    list-style: none; /* Remove o estilo padrão da lista */
+    padding: 0;
+}
+.benefits li {
+    padding: 10px 0;
+    font-size: 18px; /* # Tamanho da fonte dos itens da lista de benefícios. Ajuste conforme preferir. */
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee; /* Linha sutil entre os itens */
+}
+.benefits li:last-child {
+    border-bottom: none; /* Remove a linha do último item */
+}
+.benefits li::before {
+    content: "✅"; /* # Ícone do checklist. Pode ser substituído por outros emojis ou ícones. */
+    margin-right: 10px;
+    color: #0070f3; /* # Cor do ícone do checklist (azul claro). Ajuste conforme preferir. */
+    font-size: 20px; /* # Tamanho do ícone do checklist. Ajuste conforme preferir. */
+}
+
+/* ========================================= */
+/* Estilos da Seção do Formulário            */
+/* ========================================= */
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre os campos do formulário */
+    margin-top: 20px;
+}
+.form-section label.sr-only { /* Estilo para labels visivelmente escondidas mas acessíveis para leitores de tela */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+.form-section input,
+.form-section select,
+.form-section button {
+    padding: 14px;
+    font-size: 16px; /* # Tamanho da fonte dos campos e botão do formulário. Ajuste conforme preferir. */
+    border-radius: 8px;
+    border: 1px solid #ccc; /* # Cor da borda dos campos. Ajuste conforme preferir. */
+    width: 100%; /* Garante que os campos ocupem toda a largura disponível */
+}
+.form-section button {
+    background-color: #004aad; /* # Cor de fundo do botão do formulário. Ajuste conforme preferir. */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease; /* Transição suave no hover */
+    font-weight: bold; /* Deixa o texto do botão em negrito */
+}
+.form-section button:hover {
+    background-color: #003080; /* # Cor de fundo do botão do formulário no hover. Ajuste conforme preferir. */
+}
+
+/* ========================================= */
+/* Estilos do Rodapé (Footer)                */
+/* ========================================= */
+footer {
+    background-color: #eee; /* # Cor de fundo do rodapé. Ajuste conforme preferir. */
+    padding: 20px;
+    text-align: center;
+    font-size: 14px; /* # Tamanho da fonte do rodapé. Ajuste conforme preferir. */
+    color: #666; /* # Cor do texto do rodapé. Ajuste conforme preferir. */
+    margin-top: 40px; /* Espaçamento superior do rodapé */
+}
+
+/* ========================================= */
+/* Botão Flutuante do WhatsApp               */
+/* ========================================= */
+.whatsapp-float {
+    position: fixed; /* Fixa o botão na tela */
+    bottom: 20px; /* # Distância da parte inferior da tela. Ajuste conforme preferir. */
+    right: 20px; /* # Distância da direita da tela. Ajuste conforme preferir. */
+    background-color: #25d366; /* # Cor de fundo do WhatsApp (verde). Ajuste conforme preferir. */
+    color: white;
+    font-size: 14px; /* # Tamanho da fonte do texto "Consultor Online". Ajuste conforme preferir. */
+    padding: 10px 15px; /* Espaçamento interno */
+    border-radius: 50px; /* Torna o botão arredondado */
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra para o botão */
+    z-index: 999; /* Garante que fique acima de outros elementos */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre o ícone e o texto */
+    transition: background-color 0.3s ease;
+}
+.whatsapp-float:hover {
+    background-color: #1ebe57; /* # Cor de fundo do WhatsApp no hover. Ajuste conforme preferir. */
+}
+.whatsapp-float img {
+    width: 32px; /* # Tamanho do ícone do WhatsApp. Ajuste conforme preferir. */
+    height: 32px;
+    vertical-align: middle; /* Alinha a imagem com o texto */
+}
+
+
+/* ========================================= */
+/* Media Queries para Responsividade         */
+/* ========================================= */
+
+/* Para telas menores (até 768px - tablets e celulares grandes) */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 300px; /* # Altura menor para o carrossel em celulares. Ajuste conforme necessário. */
+    }
+
+    .carousel-slide h1 {
+        font-size: 28px; /* # Reduz o tamanho do título em telas pequenas. Ajuste conforme preferir. */
+    }
+
+    .carousel-slide p {
+        font-size: 16px; /* # Reduz o tamanho do parágrafo em telas pequenas. Ajuste conforme preferir. */
+    }
+
+    .carousel-button {
+        padding: 12px 25px; /* # Ajusta o padding do botão em telas pequenas. Ajuste conforme preferir. */
+        font-size: 16px; /* # Reduz o tamanho da fonte do botão em telas pequenas. Ajuste conforme preferir. */
+    }
+
+    .carousel-nav-arrow {
+        padding: 8px 12px; /* Ajusta o padding das setas */
+        font-size: 20px; /* Reduz o tamanho da fonte das setas */
+        left: 10px;
+        right: 10px;
+    }
+
+    .container {
+        margin: 20px auto; /* Reduz a margem do container em telas pequenas */
+        padding: 15px; /* Reduz o padding interno */
+    }
+
+    .benefits h2, .form-section h2 {
+        font-size: 22px; /* # Reduz o tamanho dos títulos das seções. Ajuste conforme preferir. */
+    }
+
+    .benefits li {
+        font-size: 16px; /* # Reduz o tamanho da fonte dos benefícios. Ajuste conforme preferir. */
+    }
+
+    .form-section input,
+    .form-section select,
+    .form-section button {
+        padding: 12px; /* Ajusta o padding dos campos do formulário */
+        font-size: 15px; /* Reduz o tamanho da fonte dos campos */
+    }
+
+    .whatsapp-float {
+        bottom: 15px; /* # Ajusta a posição do botão WhatsApp em telas pequenas. Ajuste conforme preferir. */
+        right: 15px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    .whatsapp-float img {
+        width: 28px; /* # Reduz o tamanho do ícone do WhatsApp. Ajuste conforme preferir. */
+        height: 28px;
+    }
+}
+
+/* Para telas muito pequenas (até 480px - ex: iPhones SE antigos, modos retrato estreitos) */
+@media (max-width: 480px) {
+    .carousel-slide h1 {
+        font-size: 24px;
+    }
+    .carousel-slide p {
+        font-size: 14px;
+    }
+    .carousel-button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+    .carousel-nav-arrow {
+        display: none; /* # Pode esconder as setas em telas muito pequenas para economizar espaço. O autoplay ainda funcionará. */
+    }
+}
