@@ -5,47 +5,75 @@
 :root {
     --primary-color: #000000; /* Preto: Usado para texto principal, fundos escuros */
     --secondary-color: #FFFFFF; /* Branco: Usado para fundos claros, texto em fundos escuros */
-    --accent-color: #FF0000; /* Vermelho: Usado para acentos, títulos, bordas, destaques */
-    --light-gray: #f2f2f2; /* Cinza claro: Para elementos secundários, bordas sutis */
-    --medium-gray: #ccc; /* Cinza médio: Para bordas, separadores */
-    --dark-gray-text: #333; /* Cinza escuro para textos específicos se necessário */
-    --whatsapp-green: #25d366; /* Verde do WhatsApp */
-    --whatsapp-green-hover: #1ebe57; /* Verde do WhatsApp no hover */
+    --accent-color: #FF0000; /* Vermelho: Usado para acentos, títulos, bordas, destaques, foco */
+    --light-gray: #f2f2f2; /* Cinza claro: Para elementos secundários, bordas sutis, divisores */
+    --medium-gray: #ccc; /* Cinza médio: Para bordas, separadores, ícones de fechamento */
+    --dark-gray-text: #333; /* Cinza escuro para textos específicos se necessário (ex: placeholders) */
+    --whatsapp-green: #25d366; /* Verde vibrante do WhatsApp */
+    --whatsapp-green-hover: #1ebe57; /* Verde do WhatsApp um pouco mais escuro no hover */
+    --box-shadow-light: rgba(0,0,0,0.05); /* Sombra suave para profundidade em elementos claros */
+    --box-shadow-medium: rgba(0,0,0,0.15); /* Sombra para elementos em destaque */
+    --box-shadow-dark: rgba(0,0,0,0.35); /* Sombra mais pronunciada para pop-ups */
+    --transition-speed: 0.3s; /* Velocidade padrão para transições de hover/focus */
 }
 
 /* ========================================= */
 /* ESTILOS GLOBAIS E RESET                   */
+/* Aplicações básicas para o corpo da página e elementos fundamentais. */
 /* ========================================= */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Garante que padding e border não aumentem a largura total do elemento */
+    box-sizing: border-box; /* Garante que padding e border não aumentem o largura total do elemento */
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif; /* Fonte padrão do sistema, leve e moderna */
+    font-family: 'Segoe UI', Arial, sans-serif; /* Adicionado Arial como fallback */
     background: var(--secondary-color); /* Fundo do corpo: Branco */
     color: var(--primary-color); /* Cor do texto principal: Preto */
     line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
     overflow-x: hidden; /* Evita rolagem horizontal em excesso */
 }
 
+/* Garante que imagens sejam responsivas e não causem overflow */
+img {
+    display: block; /* Remove espaço extra abaixo de imagens */
+    max-width: 100%; /* Garante que a imagem não seja maior que seu contêiner */
+    height: auto; /* Mantém a proporção da imagem ao redimensionar */
+}
+
+/* Container principal para centralizar e padronizar o conteúdo */
 .container {
     max-width: 1000px; /* Largura máxima para o conteúdo principal */
     margin: 40px auto; /* Centraliza o container e adiciona margem superior/inferior */
     padding: 20px; /* Espaçamento interno */
     background: var(--secondary-color); /* Fundo do container: Branco */
     border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Sombra suave para profundidade */
+    box-shadow: 0 4px 12px var(--box-shadow-light); /* Sombra suave para profundidade */
 }
 
 /* ESTILOS DE FOCO PARA ACESSIBILIDADE: Para usuários que navegam com teclado. */
+/* Garante um feedback visual claro ao interagir com elementos focáveis. */
 input:focus,
 select:focus,
 button:focus,
-a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
+a:focus { 
     outline: 2px solid var(--accent-color); /* Foco na cor vermelha do tema */
     outline-offset: 3px; /* Afasta o outline da borda do elemento */
+    border-radius: 5px; /* Pequeno arredondamento para o outline se necessário */
+}
+
+/* Classe para esconder elementos visualmente mas mantê-los para leitores de tela */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* ========================================= */
@@ -55,19 +83,19 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     text-align: center; /* Centraliza o logo */
     padding: 25px 0; /* Espaçamento superior e inferior */
     background-color: var(--secondary-color); /* Fundo branco para o cabeçalho */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* Sombra sutil abaixo do cabeçalho */
+    box-shadow: 0 2px 8px var(--box-shadow-light); /* Sombra sutil abaixo do cabeçalho */
 }
 
 .site-header img {
     max-width: 250px; /* LARGURA MÁXIMA DO LOGO. Ajuste conforme o tamanho do seu logotipo. */
     height: auto; /* Mantém a proporção da imagem */
-    display: block; /* Garante que o max-width e margin auto funcionem */
     margin: 0 auto; /* Centraliza a imagem horizontalmente */
 }
 
 
 /* ========================================= */
 /* CARROSSEL PRINCIPAL (SEÇÃO HERO)          */
+/* Responsável pela exibição e transição dos slides de destaque. */
 /* ========================================= */
 .carousel-container {
     position: relative;
@@ -89,7 +117,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     text-align: center;
     display: flex; /* Para centralizar o conteúdo (título, parágrafo, botão) */
     flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente */
+    justify-content: center;
     align-items: center; /* Centraliza horizontalmente */
     opacity: 0; /* Começa invisível para o efeito de transição */
     transition: opacity 1s ease-in-out; /* Transição suave para o efeito de fade */
@@ -105,7 +133,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     font-size: 44px; /* TAMANHO DA FONTE DO TÍTULO DO CARROSSEL. */
     margin-bottom: 15px;
     text-shadow: 3px 3px 6px rgba(0,0,0,0.8); /* Sombra preta mais forte para visibilidade */
-    max-width: 90%; /* Garante que o texto não ultrapasse a largura em telas menores */
+    max-width: 90%; /* Garante que o texto não ultrapasse o largura em telas menores */
     line-height: 1.2;
 }
 
@@ -114,12 +142,12 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     max-width: 700px; /* Largura máxima para o parágrafo */
     margin-bottom: 30px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra preta mais forte para visibilidade */
-    max-width: 90%; /* Garante que o texto não ultrapasse a largura em telas menores */
+    max-width: 90%; /* Garante que o texto não ultrapasse o largura em telas menores */
     line-height: 1.4;
 }
 
 /* ========================================= */
-/* ESTILOS DOS BOTÕES DO CARROSSEL           */
+/* ESTILOS DOS BOTÕES PRINCIPAIS DO CARROSSEL */
 /* ========================================= */
 .carousel-button {
     padding: 15px 35px; /* Ajuste para um botão um pouco maior */
@@ -128,8 +156,9 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     border-radius: 50px; /* ARREDONDAMENTO DO BOTÃO: Valor alto para formato pílula. */
     cursor: pointer;
     text-decoration: none; /* Remove sublinhado do link */
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave para todas as propriedades */
+    transition: all var(--transition-speed) ease; /* Transição suave para todas as propriedades usando variável */
     display: inline-block; /* Garante que padding e margin funcionem corretamente */
+    text-align: center; /* Garante que o texto esteja centralizado */
 
     /* ESTILO INICIAL DO BOTÃO: Preto com texto branco e BORDA FINA VERMELHA. */
     background-color: var(--primary-color); /* Preto */
@@ -137,9 +166,9 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     border: 2px solid var(--accent-color); /* Borda Vermelha */
 }
 
+/* ESTILO DO BOTÃO AO PASSAR O MOUSE OU FOCAR */
 .carousel-button:hover,
-.carousel-button:active {
-    /* ESTILO DO BOTÃO AO PASSAR O MOUSE OU CLICAR: Fundo PRETO e texto BRANCO, com efeito sutil. */
+.carousel-button:focus { 
     background-color: var(--primary-color); /* Permanece Preto */
     color: var(--secondary-color); /* Permanece Branco */
     border-color: var(--accent-color); /* A borda continua Vermelha */
@@ -147,31 +176,51 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     transform: translateY(-3px); /* Leve levantamento */
 }
 
+/* ESTILO DO BOTÃO DO SLIDE ATIVO (controlado por JS) */
+.carousel-button.hover-active {
+    background-color: var(--primary-color); /* Permanece Preto */
+    color: var(--secondary-color); /* Permanece Branco */
+    border-color: var(--accent-color); /* A borda continua Vermelha */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Sombra que "brilha" em vermelho */
+    transform: translateY(-3px); /* Leve levantamento */
+}
+
+
 /* ========================================= */
 /* SETAS DE NAVEGAÇÃO DO CARROSSEL           */
+/* Ajustes para torná-las mais interativas e visualmente agradáveis. */
 /* ========================================= */
 .carousel-nav-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.7); /* Fundo preto semi-transparente */
+    background-color: rgba(0,0,0,0.4); /* Fundo preto mais transparente (40% de opacidade) */
     color: var(--secondary-color); /* Cor do ícone: Branco */
-    padding: 12px 18px; /* Ajuste do padding */
+    width: 50px; /* Largura para formar o círculo */
+    height: 50px; /* Altura para formar o círculo */
+    display: flex; /* Para centralizar o ícone */
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     z-index: 10; /* Garante que as setas fiquem acima dos slides */
     font-size: 28px; /* TAMANHO DA FONTE DAS SETAS. */
-    border-radius: 5px;
+    border-radius: 50%; /* Formato redondo */
     user-select: none; /* Evita seleção de texto ao clicar */
-    transition: background-color 0.3s ease;
+    border: none; /* Remove borda padrão de botões */
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
-.carousel-nav-arrow:hover {
-    background-color: var(--primary-color); /* Preto sólido no hover */
+.carousel-nav-arrow:hover,
+.carousel-nav-arrow:focus { /* Adicionado :focus para acessibilidade */
+    background-color: rgba(0,0,0,0.6); /* Fundo preto um pouco menos transparente no hover (60% de opacidade) */
+    box-shadow: 0 0 10px var(--box-shadow-medium); /* Sombra sutil no hover */
+    transform: translateY(-50%) scale(1.05); /* Leve aumento e mantém centralização vertical */
 }
 .carousel-nav-arrow.prev { left: 20px; }
 .carousel-nav-arrow.next { right: 20px; }
 
 /* ========================================= */
 /* SEÇÃO DE TEXTO INTRODUTÓRIO               */
+/* Texto descritivo sobre a empresa. */
 /* ========================================= */
 .intro-text {
     text-align: center; /* Centraliza o texto */
@@ -199,6 +248,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
 
 /* ========================================= */
 /* SEÇÃO DE BENEFÍCIOS                       */
+/* Lista de diferenciais da Exception Seguros. */
 /* ========================================= */
 .benefits h2, .form-section h2 {
     font-size: 28px; /* TAMANHO DOS TÍTULOS DAS SEÇÕES (Benefícios e Formulário). */
@@ -230,6 +280,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
 
 /* ========================================= */
 /* ESTILOS DO FORMULÁRIO DE COTAÇÃO          */
+/* Componentes de entrada de dados e botão de envio. */
 /* ========================================= */
 .form-section form {
     display: flex;
@@ -237,18 +288,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     gap: 18px; /* Espaçamento entre os campos do formulário */
     margin-top: 25px;
 }
-/* Estilo para labels visivelmente escondidas mas acessíveis para leitores de tela */
-.form-section label.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
+
 .form-section input,
 .form-section select {
     padding: 15px;
@@ -259,7 +299,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     color: var(--primary-color);
 }
 .form-section input::placeholder {
-    color: #888;
+    color: var(--dark-gray-text); /* Usando variável para placeholder */
 }
 
 .form-section button[type="submit"] {
@@ -270,11 +310,12 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     border-radius: 8px;
     border: none;
     cursor: pointer;
-    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Transição para efeitos de hover */
+    transition: background var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease; /* Transição para efeitos de hover */
     font-weight: bold;
     width: 100%;
 }
-.form-section button[type="submit"]:hover {
+.form-section button[type="submit"]:hover,
+.form-section button[type="submit"]:focus { /* Adicionado :focus para acessibilidade */
     background-color: var(--primary-color); /* PERMANECE PRETO no hover */
     color: var(--secondary-color); /* PERMANECE BRANCO no hover */
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Sombra que "brilha" em vermelho no hover */
@@ -283,6 +324,7 @@ a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
 
 /* ========================================= */
 /* RODAPÉ (FOOTER)                           */
+/* Informações de contato e direitos autorais. */
 /* ========================================= */
 footer {
     background-color: var(--primary-color); /* Fundo do rodapé: Preto */
@@ -292,6 +334,23 @@ footer {
     color: var(--secondary-color); /* Cor do texto do rodapé: Branco */
     margin-top: 50px; /* Espaçamento superior do rodapé */
 }
+footer p {
+    margin-bottom: 8px; /* Espaçamento entre os parágrafos do rodapé */
+}
+footer p:last-child {
+    margin-bottom: 0;
+}
+footer a {
+    color: var(--secondary-color); /* Garante que links no footer sejam brancos */
+    text-decoration: underline; /* Adiciona sublinhado para indicar que é um link */
+    transition: color var(--transition-speed) ease;
+}
+footer a:hover,
+footer a:focus {
+    color: var(--accent-color); /* Links vermelhos no hover/focus no footer */
+    text-decoration: none; /* Remove sublinhado no hover/focus */
+}
+
 
 /* ========================================= */
 /* BOTÃO FLUTUANTE DO WHATSAPP (Gatilho do Pop-up) */
@@ -307,18 +366,19 @@ footer {
     border-radius: 50px; /* Torna o botão arredondado */
     text-decoration: none;
     font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra para o botão */
+    box-shadow: 0 4px 10px var(--box-shadow-medium); /* Sombra para o botão */
     z-index: 998; /* Fica abaixo do pop-up, mas acima do conteúdo normal */
     display: flex;
     align-items: center;
     gap: 10px; /* Espaçamento entre o ícone e o texto */
     border: none; /* Remove a borda padrão de botões */
     cursor: pointer; /* Indica que é clicável */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
-.whatsapp-float:hover {
+.whatsapp-float:hover,
+.whatsapp-float:focus { /* Adicionado :focus para acessibilidade */
     background-color: var(--whatsapp-green-hover); /* Verde mais escuro no hover */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 15px var(--box-shadow-dark);
     transform: translateY(-2px);
 }
 .whatsapp-float img {
@@ -329,6 +389,7 @@ footer {
 
 /* ========================================= */
 /* ESTILOS DO POP-UP INTERATIVO DO WHATSAPP  */
+/* O overlay e a caixa de diálogo do pop-up. */
 /* ========================================= */
 .whatsapp-popup-overlay {
     display: none; /* Esconde o pop-up por padrão (JS vai mudar para 'flex') */
@@ -337,13 +398,13 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.65); /* Fundo escurecido e semi-transparente (mais escuro) */
+    background-color: rgba(0, 0, 0, 0.75); /* Fundo escurecido e semi-transparente (mais escuro) */
     z-index: 1000; /* Garante que fique acima de tudo, inclusive do botão flutuante */
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    justify-content: center;
     align-items: center; /* Centraliza o conteúdo verticalmente */
     opacity: 0; /* Começa totalmente transparente */
     visibility: hidden; /* Garante que não interfira com eventos de mouse/toque quando escondido */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transição suave de visibilidade */
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease; /* Transição suave de visibilidade */
 }
 
 .whatsapp-popup-overlay.active {
@@ -356,14 +417,14 @@ footer {
     background-color: var(--secondary-color); /* Fundo do pop-up: Branco */
     padding: 35px; /* Mais padding interno */
     border-radius: 12px; /* Bordas mais arredondadas */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35); /* Sombra mais pronunciada */
+    box-shadow: 0 8px 25px var(--box-shadow-dark); /* Sombra mais pronunciada */
     text-align: center;
     position: relative;
     max-width: 380px; /* Largura máxima do pop-up */
     width: 90%; /* Responsivo: 90% da largura da tela */
     transform: translateY(20px); /* Efeito de entrada: começa um pouco abaixo */
     opacity: 0; /* Efeito de entrada: começa invisível */
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* Transição suave para o pop-up */
+    transition: transform var(--transition-speed) ease-out, opacity var(--transition-speed) ease-out; /* Transição suave para o pop-up */
 }
 
 .whatsapp-popup-overlay.active .whatsapp-popup-content {
@@ -378,8 +439,10 @@ footer {
     font-size: 30px; /* Tamanho maior para o 'X' */
     cursor: pointer;
     color: var(--medium-gray); /* Cor do 'X' */
+    transition: color var(--transition-speed) ease; /* Transição para o hover */
 }
-.whatsapp-popup-close:hover {
+.whatsapp-popup-close:hover,
+.whatsapp-popup-close:focus { /* Adicionado :focus para acessibilidade */
     color: var(--primary-color); /* Cor do 'X' no hover: Preto */
 }
 
@@ -417,9 +480,10 @@ footer {
     border-radius: 50px; /* Botão arredondado */
     text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
-.whatsapp-popup-button:hover {
+.whatsapp-popup-button:hover,
+.whatsapp-popup-button:focus { /* Adicionado :focus para acessibilidade */
     background-color: var(--primary-color); /* PERMANECE PRETO no hover */
     color: var(--secondary-color); /* PERMANECE BRANCO no hover */
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Sombra que "brilha" em vermelho no hover */
@@ -429,6 +493,7 @@ footer {
 
 /* ========================================= */
 /* MEDIA QUERIES PARA RESPONSIVIDADE         */
+/* Ajustes de layout para diferentes tamanhos de tela. */
 /* ========================================= */
 
 /* Para telas de TABLETS e CELULARES GRANDES (até 768px de largura) */
@@ -458,8 +523,9 @@ footer {
     }
 
     .carousel-nav-arrow {
-        padding: 10px 15px;
-        font-size: 24px;
+        width: 45px; /* Ajuste para o círculo menor */
+        height: 45px;
+        font-size: 22px;
         left: 15px;
         right: 15px;
     }
@@ -510,6 +576,9 @@ footer {
         padding: 20px;
         font-size: 13px;
         margin-top: 30px;
+    }
+    footer p {
+        margin-bottom: 6px;
     }
 
     .whatsapp-float {
@@ -615,6 +684,9 @@ footer {
         padding: 15px;
         font-size: 12px;
         margin-top: 25px;
+    }
+    footer p {
+        margin-bottom: 5px;
     }
 
     .whatsapp-float {
