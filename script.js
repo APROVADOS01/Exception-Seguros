@@ -8,13 +8,17 @@ let carouselInterval; // Variável para armazenar o ID do intervalo do setTimeou
 // Função para exibir o slide atual e iniciar o timer para o próximo
 function showSlides() {
     slides.forEach(slide => slide.classList.remove('active')); // Remove a classe 'active' de todos os slides
+    
     // Incrementa o índice para o próximo slide
     slideIndex++; 
-    // Se o índice for maior ou igual ao número total de slides, volta para o primeiro (0)
+    
+    // Lógica para "enrolar" o carrossel: Se ultrapassar o último slide, volta para o primeiro (0)
     if (slideIndex >= slides.length) {
         slideIndex = 0; 
     }
+    
     slides[slideIndex].classList.add('active'); // Adiciona a classe 'active' ao slide atual
+    
     // Define um novo timer para a próxima transição automática
     carouselInterval = setTimeout(showSlides, 5000); // # TEMPO DE TRANSIÇÃO AUTOMÁTICA (em milissegundos). Ajuste conforme preferir.
 }
@@ -26,11 +30,14 @@ function changeSlide(n) {
     // Ajusta o índice do slide baseado no valor de 'n' (+1 para próximo, -1 para anterior)
     slideIndex += n; 
 
-    // Lógica para "enrolar" o carrossel (voltar ao início/fim se ultrapassar os limites)
-    if (slideIndex < 0) { // Se o índice for menor que 0 (indo para trás do primeiro slide)
-        slideIndex = slides.length - 1; // Vai para o último slide
-    } else if (slideIndex >= slides.length) { // Se o índice for maior ou igual ao número total de slides (indo para frente do último)
-        slideIndex = 0; // Vai para o primeiro slide
+    // Lógica para "enrolar" o carrossel:
+    // Se o índice for menor que 0 (indo para trás do primeiro slide), vai para o último slide
+    if (slideIndex < 0) { 
+        slideIndex = slides.length - 1; 
+    } 
+    // Se o índice for maior ou igual ao número total de slides (indo para frente do último), vai para o primeiro slide
+    else if (slideIndex >= slides.length) { 
+        slideIndex = 0; 
     }
     
     slides.forEach(slide => slide.classList.remove('active')); // Remove 'active' de todos os slides
@@ -71,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openWhatsappPopupBtn.addEventListener('click', showPopup);
 
         // # ABRIR O POP-UP AUTOMATICAMENTE QUANDO O SITE CARREGAR
-        // Você pode ajustar o tempo (em milissegundos) ou remover o setTimeout para abrir instantaneamente.
+        // Este setTimeout garante que o pop-up apareça 1 segundo após o site carregar.
         setTimeout(() => {
             showPopup();
         }, 1000); // # TEMPO PARA ABRIR O POP-UP AUTOMATICAMENTE (1000ms = 1 segundo). Altere ou defina como 0 para abrir instantaneamente.
