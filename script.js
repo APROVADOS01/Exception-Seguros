@@ -8,11 +8,13 @@ let carouselInterval; // Variável para armazenar o ID do intervalo do setTimeou
 // Função para exibir o slide atual e iniciar o timer para o próximo
 function showSlides() {
     slides.forEach(slide => slide.classList.remove('active')); // Remove a classe 'active' de todos os slides
-    slideIndex++; // Avança para o próximo slide
-    if (slideIndex > slides.length) {
-        slideIndex = 1; // Se for o último slide, volta para o primeiro
+    // Incrementa o índice para o próximo slide
+    slideIndex++; 
+    // Se o índice for maior ou igual ao número total de slides, volta para o primeiro (0)
+    if (slideIndex >= slides.length) {
+        slideIndex = 0; 
     }
-    slides[slideIndex - 1].classList.add('active'); // Adiciona a classe 'active' ao slide atual
+    slides[slideIndex].classList.add('active'); // Adiciona a classe 'active' ao slide atual
     // Define um novo timer para a próxima transição automática
     carouselInterval = setTimeout(showSlides, 5000); // # TEMPO DE TRANSIÇÃO AUTOMÁTICA (em milissegundos). Ajuste conforme preferir.
 }
@@ -20,14 +22,20 @@ function showSlides() {
 // Função para mudar o slide manualmente (usada pelas setas de navegação)
 function changeSlide(n) {
     clearTimeout(carouselInterval); // Limpa o timer automático para evitar pular slides durante a navegação manual
-    slideIndex += n - 1; // Ajusta o índice baseado no botão clicado (-1 para anterior, +1 para próximo)
-    if (slideIndex < 0) { // Se o índice for menor que zero (indo para trás do primeiro slide)
+
+    // Ajusta o índice do slide baseado no valor de 'n' (+1 para próximo, -1 para anterior)
+    slideIndex += n; 
+
+    // Lógica para "enrolar" o carrossel (voltar ao início/fim se ultrapassar os limites)
+    if (slideIndex < 0) { // Se o índice for menor que 0 (indo para trás do primeiro slide)
         slideIndex = slides.length - 1; // Vai para o último slide
-    } else if (slideIndex >= slides.length) { // Se o índice for maior ou igual ao número de slides (indo para frente do último)
+    } else if (slideIndex >= slides.length) { // Se o índice for maior ou igual ao número total de slides (indo para frente do último)
         slideIndex = 0; // Vai para o primeiro slide
     }
-    slides.forEach(slide => slide.classList.remove('active')); // Remove 'active' de todos
+    
+    slides.forEach(slide => slide.classList.remove('active')); // Remove 'active' de todos os slides
     slides[slideIndex].classList.add('active'); // Adiciona 'active' ao slide selecionado
+
     // Reinicia o timer para a transição automática após a mudança manual
     carouselInterval = setTimeout(showSlides, 5000); // # TEMPO DE TRANSIÇÃO AUTOMÁTICA APÓS INTERAÇÃO MANUAL.
 }
@@ -38,7 +46,8 @@ function changeSlide(n) {
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializa o carrossel se houver slides
     if (slides.length > 0) {
-        slides[0].classList.add('active'); // Garante que o primeiro slide esteja ativo ao carregar a página
+        // Inicializa o primeiro slide como ativo. A função showSlides já fará a primeira transição automática.
+        slides[0].classList.add('active'); 
         carouselInterval = setTimeout(showSlides, 5000); // Inicia o ciclo de transição automática
     }
 
@@ -61,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Event listener para abrir o pop-up AO CLICAR NO BOTÃO FLUTUANTE
         openWhatsappPopupBtn.addEventListener('click', showPopup);
 
-        // # NOVO: ABRIR O POP-UP AUTOMATICAMENTE QUANDO O SITE CARREGAR
+        // # ABRIR O POP-UP AUTOMATICAMENTE QUANDO O SITE CARREGAR
         // Você pode ajustar o tempo (em milissegundos) ou remover o setTimeout para abrir instantaneamente.
         setTimeout(() => {
             showPopup();
